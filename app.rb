@@ -6,7 +6,7 @@ require 'sinatra/activerecord'
 
 set :database, "sqlite3:barbershop.db"
 
-class Client < ActiveRecord::Base
+class Visit < ActiveRecord::Base
 end
 
 get '/' do
@@ -20,5 +20,6 @@ post '/visit' do
 	@username = params[:username]
 	@phone = params[:phone]
 	@date = params[:date]
+	Visit.create(username: @username, phone: @phone, date: @date)
 	erb "#{@username} we'll be waiting for you at #{@date}"
 end
